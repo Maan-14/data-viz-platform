@@ -12,7 +12,7 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({
   onVariableSelect 
 }) => {
   const [hoveredVariable, setHoveredVariable] = useState<Variable | null>(null);
-  const [hoverTimeout, setHoverTimeout] = useState<number | null>(null);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [selectedVariables, setSelectedVariables] = useState<Set<string>>(new Set());
 
   const handleVariableHover = useCallback((variable: Variable) => {
