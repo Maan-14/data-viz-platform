@@ -8,4 +8,7 @@ export { Bars3Icon } from './Bars3Icon';
 export { SearchIcon } from './SearchIcon';
 export { HistoryIcon } from './HistoryIcon';
 export { UploadIcon } from './UploadIcon';
-export { BoltIcon } from './BoltIcon'; 
+export { BoltIcon } from './BoltIcon';
+export { ArrowUpIcon} from './ArrowUpIcon';
+export { SparklesIcon} from './SparklesIcon';
+export { ThreeDotsIcon} from './ThreeDotsIcon';
