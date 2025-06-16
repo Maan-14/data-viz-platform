@@ -7,6 +7,7 @@ import {
   Cog6ToothIcon,
   Bars3Icon,
 } from '../components/icons';
+import { ProfileIcon } from '../components/icons/ProfileIcon';
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -26,7 +27,7 @@ const Sidebar = () => {
         isCollapsed ? 'w-20' : 'w-64'
       }`}
     >
-      <div className="flex flex-col items-center py-4 space-y-4">
+      <div className="flex flex-col items-center py-4 space-y-4 flex-grow">
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="p-2 rounded-lg pt-4"
@@ -57,6 +58,22 @@ const Sidebar = () => {
             </span>
           </div>
         ))}
+      </div>
+
+      {/* Profile Icon at the bottom */}
+      <div className="w-full flex items-center px-5 py-4">
+        <button
+          className={`flex flex-col items-center justify-center w-10 h-10 rounded-[10px] transition-colors`}
+        >
+          <ProfileIcon className="h-6 w-6 text-[#858882]" />
+        </button>
+        <span 
+          className={`ml-4 text-white transition-all duration-300 ${
+            isCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+          }`}
+        >
+          Profile
+        </span>
       </div>
     </aside>
   );

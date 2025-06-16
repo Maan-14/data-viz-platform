@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Sidebar />
       <div className="flex flex-col overflow-hidden">
         <Navbar />
-        <div className="flex-1 p-10 border border-[#525252] rounded-[5px]">
+        <div className="flex-1 p-10 border border-[#525252] rounded-[5px] overflow-y-auto custom-scrollbar">
           {children}
         </div>
       </div>
