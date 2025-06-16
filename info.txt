@@ -1,0 +1,125 @@
+Here’s a clean, trimmed version of the **AnswersAi Frontend Engineer Take-Home** suitable for feeding into Cursor AI. All symbols, special characters, and formatting issues have been removed or simplified to plain text:
+
+---
+
+**AnswersAi Frontend Engineer Take-Home**
+
+**Assessment Overview**
+Implement 3 screens for a data visualization platform using React and TypeScript. Focus on UI, interactions, and state management. Follow the Figma designs for layout, spacing, and behavior.
+
+**Required Screens**
+
+1. Dashboard Screen
+
+* Primary data visualization (chart, graph, or map)
+* Variables Panel with adjustable parameters
+* Action buttons including "Edit Variables"
+
+2. Variable Editing Slide-Over Card
+
+* Triggered by clicking "Edit Variables"
+* Slide-over panel overlays dashboard
+* Form or inputs for editing variables
+
+3. Details Screen
+
+* Accessed by hovering over a data point in the dashboard
+* Shows detailed info about the selected data point
+
+**Required Interactions**
+
+1. Slide-Over Card Interaction
+
+* Opens on "Edit Variables" click
+* Smooth transition
+* Allows variable updates
+
+2. Data Point Hover Interaction
+
+* Hover reveals detailed card
+* Card fades in
+* Info about the specific data point
+
+3. Variable Selection Interaction
+
+* Select variables from the panel
+* Hover shows contextual info
+* Handle active and inactive states
+
+**Technical Requirements**
+
+Frontend Stack
+
+* React 18+ with TypeScript
+* State management with Redux Toolkit, Zustand, or similar
+* React Router for navigation
+* Styled-components or Tailwind CSS
+* Firebase Auth or similar for authentication
+
+**Core Requirements**
+
+* Responsive design (desktop-first, includes tablet and mobile)
+* Smooth transitions and animations
+* Show loading and error states
+* Reusable components and clear architecture
+
+**Evaluation Criteria**
+
+Design Implementation (40 percent)
+
+* Matches Figma
+* Correct animations and responsive behavior
+
+Code Quality (35 percent)
+
+* Clean, readable, typed code
+* Scalable component structure
+* Effective state management
+
+Technical Implementation (25 percent)
+
+* Smooth interactions
+* Proper routing and authentication
+* Handles edge cases
+
+**Getting Started**
+
+1. Create new React project
+
+* Command: npm create vite\@latest data-viz-platform -- --template react-ts
+
+2. Set up authentication
+
+* Use Firebase or similar
+* Configure Google OAuth and email/password login
+
+3. Implement in this order
+
+* Dashboard screen
+* Slide-over interaction
+* Details screen
+* Variable selection interaction
+
+**Submission Guidelines**
+
+* Push to a new GitHub repository
+* Add a README with:
+
+  * Setup instructions
+  * Features implemented
+  * Technical choices and trade-offs
+  * Known issues
+  * Time spent
+  * Local dev steps
+
+**Additional Notes**
+
+* Use dummy data
+* Ensure smooth navigation
+* Comment your code
+* Prioritize core functionality
+* Handle edge cases
+
+---
+
+Let me know if you'd like it saved as a `.txt` file or cleaned even further for a specific parser.
