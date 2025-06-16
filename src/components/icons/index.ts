@@ -1,8 +1,11 @@
 export * from './types';
-export * from './HomeIcon';
-export * from './BellIcon';
-export * from './CalendarIcon';
-export * from './CloudArrowUpIcon';
-export * from './Cog6ToothIcon';
-export * from './Bars3Icon';
-export * from './SearchIcon'; 
+export { HomeIcon } from './HomeIcon';
+export { BellIcon } from './BellIcon';
+export { CalendarIcon } from './CalendarIcon';
+export { CloudArrowUpIcon } from './CloudArrowUpIcon';
+export { Cog6ToothIcon } from './Cog6ToothIcon';
+export { Bars3Icon } from './Bars3Icon';
+export { SearchIcon } from './SearchIcon';
+export { HistoryIcon } from './HistoryIcon';
+export { UploadIcon } from './UploadIcon';
+export { BoltIcon } from './BoltIcon'; 

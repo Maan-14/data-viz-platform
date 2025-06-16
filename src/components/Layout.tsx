@@ -8,11 +8,13 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="grid grid-cols-[auto_1fr] h-screen bg-gray-900 text-white overflow-hidden">
+    <div className="grid grid-cols-[auto_1fr] h-screen text-white overflow-hidden">
       <Sidebar />
-      <div className="overflow-hidden">
+      <div className="flex flex-col overflow-hidden">
         <Navbar />
-        <main className="p-4 overflow-auto">{children}</main>
+        <div className="flex-1 p-10 border border-[#525252] rounded-[5px]">
+          {children}
+        </div>
       </div>
     </div>
   );
