@@ -11,7 +11,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, icon }) => {
   const [activeButton, setActiveButton] = useState<string | null>(null);
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between px-8">
       <div className="flex items-center">
         {icon}
         <h1 className="text-white text-2xl font-semibold ml-3">{title}</h1>
