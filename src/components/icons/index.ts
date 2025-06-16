@@ -15,3 +15,4 @@ export * from './ThreeDotsIcon';
 export * from './ChevronDownIcon';
 export * from './QuestionMarkIcon';
 export * from './IncrementUpIcon';
+export * from './PlusIcon';
