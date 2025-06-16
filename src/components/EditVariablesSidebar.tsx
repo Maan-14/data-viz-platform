@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CrossIcon, SearchIcon, SparklesIcon, ReloadIcon, PlusIcon, TickIcon, ExclamationIcon } from './icons';
+import { CrossIcon, SearchIcon, SparklesIcon, ReloadIcon, PlusIcon, TickIcon, ExclamationIcon, ArrowDownIcon } from './icons';
 import type { Variable } from '../data/variableData';
 import { variableCategories as initialCategories } from '../data/variableData';
 
@@ -58,7 +58,7 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="p-8 h-full flex flex-col">
+        <div className="p-8 h-full flex flex-col overflow-y-auto custom-scrollbar">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-white text-2xl font-medium leading-[150%] tracking-[-2.3%] font-['Inter']">
               Edit Variables
@@ -101,7 +101,7 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
           </div>
 
           {/* Variable Categories Section */}
-          <div className="flex-1 bg-[#161618] border border-[#525252] rounded-[5px] p-6 relative overflow-hidden">
+          <div className="flex-1 bg-[#161618] border border-[#525252] rounded-[5px] p-6 relative overflow-hidden mb-8">
             <div className="h-full overflow-y-auto custom-scrollbar">
               {initialCategories.map((category) => (
                 <div key={category.id} className="mb-8 last:mb-0">
@@ -155,6 +155,25 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
                 </p>
               </div>
             )}
+          </div>
+          {/* Primary Variables Card */}
+          <div className="h-[56px] bg-[#222324] border border-[#525252] rounded-[4px] mb-4 flex items-center justify-between px-4">
+            <h3 className="text-[#C8E972] text-[20px] font-medium leading-[150%] tracking-[-2.3%] font-['Inter']">
+              Primary Variables
+            </h3>
+            <div className="w-[44px] h-[34px] bg-[#18181A80] border border-[#C8E972] rounded-[56px] flex items-center justify-center p-[10px_5px]">
+              <ArrowDownIcon/>
+            </div>
+          </div>
+
+          {/* Secondary Variables Card */}
+          <div className="h-[56px] bg-[#222324] border border-[#525252] rounded-[4px] mb-8 flex items-center justify-between px-4">
+            <h3 className="text-[#C8E972] text-[20px] font-medium leading-[150%] tracking-[-2.3%] font-['Inter']">
+              Secondary Variables
+            </h3>
+            <div className="w-[44px] h-[34px] bg-[#18181A80] border border-[#C8E972] rounded-[56px] flex items-center justify-center p-[10px_5px]">
+              <ArrowDownIcon/>
+            </div>
           </div>
         </div>
       </div>
