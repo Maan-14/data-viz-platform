@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { CrossIcon, SearchIcon, SparklesIcon, ReloadIcon, PlusIcon, TickIcon, ExclamationIcon, ArrowDownIcon } from './icons';
-import type { Variable } from '../data/variableData';
+import type { 
+  EditVariablesSidebarProps, 
+  Variable, 
+} from '../types';
 import { variableCategories as initialCategories } from '../data/variableData';
 
-interface EditVariablesSidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onClose }) => {
+const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ 
+  isOpen, 
+  onClose,
+  onVariableSelect 
+}) => {
   const [hoveredVariable, setHoveredVariable] = useState<Variable | null>(null);
   const [hoverTimeout, setHoverTimeout] = useState<number | null>(null);
   const [selectedVariables, setSelectedVariables] = useState<Set<string>>(new Set());
 
-  const handleVariableHover = (variable: Variable) => {
+  const handleVariableHover = useCallback((variable: Variable) => {
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
     }
@@ -21,16 +23,16 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
       setHoveredVariable(variable);
     }, 1500);
     setHoverTimeout(timeout);
-  };
+  }, [hoverTimeout]);
 
-  const handleVariableLeave = () => {
+  const handleVariableLeave = useCallback(() => {
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
     }
     setHoveredVariable(null);
-  };
+  }, [hoverTimeout]);
 
-  const handleVariableClick = (variableId: string) => {
+  const handleVariableClick = useCallback((variableId: string) => {
     setSelectedVariables(prev => {
       const newSet = new Set(prev);
       if (newSet.has(variableId)) {
@@ -40,7 +42,12 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
       }
       return newSet;
     });
-  };
+  }, [onVariableSelect]);
+
+  const handleClose = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    onClose();
+  }, [onClose]);
 
   return (
     <>
@@ -48,7 +55,7 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/50 backdrop-blur-[4px] z-40"
-          onClick={onClose}
+          onClick={handleClose}
         />
       )}
       
@@ -64,7 +71,7 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
               Edit Variables
             </h2>
             <button 
-              onClick={onClose}
+              onClick={handleClose}
               className="p-2 hover:bg-[#FFFFFF1A] rounded-lg transition-colors"
             >
               <CrossIcon className="w-5 h-5 text-[#858882]" />
