@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   LineChart,
   Line,
@@ -20,7 +20,7 @@ const data = [
   { month: 'Oct', value: 59000, target: 85000 },
 ];
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({ active, payload }: any) => {
   if (active && payload && payload.length) {
     const value = payload[0].value;
     const target = payload[0].payload.target;
@@ -47,7 +47,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 const RevenueGraph = () => {
-  const [selectedMetric, setSelectedMetric] = useState('Unsatisfied Demand %');
+  const [selectedMetric] = useState('Unsatisfied Demand %');
 
   return (
     <div className="w-full h-full bg-[#222324] rounded-lg border border-[#525252] p-6">

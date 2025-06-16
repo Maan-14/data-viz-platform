@@ -167,7 +167,7 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
           </div>
 
           {/* Secondary Variables Card */}
-          <div className="h-[56px] bg-[#222324] border border-[#525252] rounded-[4px] mb-8 flex items-center justify-between px-4">
+          <div className="h-[56px] bg-[#222324] border border-[#525252] rounded-[4px] flex items-center justify-between px-4">
             <h3 className="text-[#C8E972] text-[20px] font-medium leading-[150%] tracking-[-2.3%] font-['Inter']">
               Secondary Variables
             </h3>
