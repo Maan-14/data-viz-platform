@@ -4,7 +4,7 @@ import { scenarioData } from '../data/scenarioData';
 
 const BestScenarioResults = () => {
   return (
-    <div className="mt-8">
+    <div className="mt-10">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-2">
           <SparklesIcon className="w-6 h-6 text-[#DCFF7FFD]" />
@@ -18,7 +18,7 @@ const BestScenarioResults = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
         {scenarioData.map((scenario) => (
           <ScenarioCard key={scenario.id} text={scenario.text} />
         ))}
