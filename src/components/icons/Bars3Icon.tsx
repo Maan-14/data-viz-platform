@@ -2,7 +2,7 @@ import React from 'react';
 import type { IconProps } from './types';
 import { defaultIconProps } from './types';
 
-export const Bars2Icon: React.FC<IconProps> = ({
+export const Bars3Icon: React.FC<IconProps> = ({
   color = defaultIconProps.color,
   className = defaultIconProps.className,
   ...props

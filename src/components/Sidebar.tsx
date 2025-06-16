@@ -5,7 +5,7 @@ import {
   CalendarIcon,
   CloudArrowUpIcon,
   Cog6ToothIcon,
-  Bars2Icon,
+  Bars3Icon,
 } from '../components/icons';
 
 const Sidebar = () => {
@@ -29,9 +29,9 @@ const Sidebar = () => {
       <div className="flex flex-col items-center py-4 space-y-4">
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="p-2 rounded-lg"
+          className="p-2 rounded-lg pt-4"
         >
-          <Bars2Icon className="h-6 w-6 text-[#858882]" />
+          <Bars3Icon className="h-6 w-6 text-[#858882]" />
         </button>
 
         {menuItems.map((item, index) => (
