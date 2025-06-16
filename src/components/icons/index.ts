@@ -16,3 +16,7 @@ export * from './ChevronDownIcon';
 export * from './QuestionMarkIcon';
 export * from './IncrementUpIcon';
 export * from './PlusIcon';
+export * from './CrossIcon';
+export * from './ReloadIcon';
+export * from './TickIcon';
+export * from './ExclamationIcon'
