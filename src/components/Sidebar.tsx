@@ -9,7 +9,7 @@ import {
 } from '../components/icons';
 
 const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [activeTab, setActiveTab] = useState('Home');
 
   const menuItems = [
@@ -22,32 +22,42 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`flex flex-col h-full bg-gray-800 shadow-lg transition-all duration-300 ${
-        isCollapsed ? 'w-16' : 'w-64'
+      className={`flex flex-col h-full bg-black shadow-lg transition-all duration-300 ${
+        isCollapsed ? 'w-20' : 'w-64'
       }`}
     >
-
+      <div className="flex flex-col items-center py-4 space-y-4">
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="p-2 rounded-lg hover:bg-gray-700"
+          className="p-2 rounded-lg"
         >
-          <Bars2Icon className="h-6 w-6 text-white" />
+          <Bars2Icon className="h-6 w-6 text-[#858882]" />
         </button>
 
         {menuItems.map((item, index) => (
-          <button
-              key={index}
-              onClick={() => item.label === 'Home' && setActiveTab(item.label)}
-              className={`w-full flex flex-col items-center px-4 py-3 text-gray-300 hover:bg-gray-700 transition-colors ${
-                activeTab === item.label ? 'bg-gray-700 text-white' : ''
+          <div key={index} className="w-full flex items-center px-5">
+            <button
+              onClick={() => setActiveTab(item.label)}
+              className={`flex flex-col items-center justify-center w-10 h-10 rounded-[10px] transition-colors ${
+                activeTab === item.label 
+                  ? 'bg-[#FFFFFF1A] border border-[#525252]' 
+                  : ''
               }`}
             >
-              <item.icon className="h-6 w-6 text-white" />
-              {!isCollapsed && <span className="ml-3">{item.label}</span>}
+              <item.icon className={`h-6 w-6 transition-colors ${
+                activeTab === item.label ? 'text-[#FFFFFF]' : 'text-[#858882]'
+              }`} />
             </button>
-          ))}
-
-
+            <span 
+              className={`ml-4 text-white transition-all duration-300 ${
+                isCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+              }`}
+            >
+              {item.label}
+            </span>
+          </div>
+        ))}
+      </div>
     </aside>
   );
 };
