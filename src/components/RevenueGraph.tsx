@@ -65,7 +65,13 @@ const RevenueGraph = () => {
       
       <ResponsiveContainer width="100%" height="90%">
         <LineChart data={data} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#525252" />
+          <CartesianGrid 
+            strokeDasharray="3 3" 
+            stroke="#525252" 
+            vertical={true}
+            horizontal={true}
+            strokeWidth={0.5}
+          />
           <XAxis 
             dataKey="month" 
             stroke="#858882"
