@@ -75,10 +75,16 @@ const RevenueGraph = () => {
             stroke="#858882"
             tick={{ fill: '#858882' }}
             tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+            domain={[0, 150000]}
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip 
+            content={<CustomTooltip />} 
+            cursor={{ stroke: '#C8E972', strokeWidth: 2.3, strokeDasharray: '5 5' }}
+            isAnimationActive={false}
+            offset={-80}
+          />
           <Line
-            type="monotone"
+            type="linear"
             dataKey="value"
             stroke="#C8E972"
             strokeWidth={2}
