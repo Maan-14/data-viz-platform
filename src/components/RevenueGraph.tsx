@@ -65,7 +65,13 @@ const RevenueGraph = () => {
       
       <ResponsiveContainer width="100%" height="90%">
         <LineChart data={data} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#525252" />
+          <CartesianGrid 
+            strokeDasharray="3 3" 
+            stroke="#525252" 
+            vertical={true}
+            horizontal={true}
+            strokeWidth={0.5}
+          />
           <XAxis 
             dataKey="month" 
             stroke="#858882"
@@ -75,10 +81,16 @@ const RevenueGraph = () => {
             stroke="#858882"
             tick={{ fill: '#858882' }}
             tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+            domain={[0, 150000]}
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip 
+            content={<CustomTooltip />} 
+            cursor={{ stroke: '#C8E972', strokeWidth: 2.3, strokeDasharray: '5 5' }}
+            isAnimationActive={false}
+            offset={-80}
+          />
           <Line
-            type="monotone"
+            type="linear"
             dataKey="value"
             stroke="#C8E972"
             strokeWidth={2}

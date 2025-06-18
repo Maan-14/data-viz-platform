@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import {
   HomeIcon,
   BellIcon,
@@ -9,9 +10,10 @@ import {
 } from '../components/icons';
 import { ProfileIcon } from '../components/icons/ProfileIcon';
 
-const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
-  const [activeTab, setActiveTab] = useState('Home');
+const Sidebar: React.FC = () => {
+  const { currentUser, logout } = useAuth();
+  const [isCollapsed, setIsCollapsed] = React.useState(true);
+  const [activeTab, setActiveTab] = React.useState('Home');
 
   const menuItems = [
     { icon: HomeIcon, label: 'Home' },
@@ -20,6 +22,14 @@ const Sidebar = () => {
     { icon: CloudArrowUpIcon, label: 'Upload' },
     { icon: Cog6ToothIcon, label: 'Settings' },
   ];
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error('Failed to log out:', error);
+    }
+  };
 
   return (
     <aside
@@ -60,20 +70,24 @@ const Sidebar = () => {
         ))}
       </div>
 
-      {/* Profile Icon at the bottom */}
-      <div className="w-full flex items-center px-5 py-4">
-        <button
-          className={`flex flex-col items-center justify-center w-10 h-10 rounded-[10px] transition-colors`}
-        >
-          <ProfileIcon className="h-6 w-6 text-[#858882]" />
+      {/* Bottom Section */}
+      <div className="flex flex-col items-center py-6 gap-6">
+        <button className="w-10 h-10 flex items-center justify-center">
+          <Cog6ToothIcon className="h-6 w-6 text-[#858882]" />
         </button>
-        <span 
-          className={`ml-4 text-white transition-all duration-300 ${
-            isCollapsed ? 'opacity-0 w-0' : 'opacity-100 w-auto'
-          }`}
-        >
-          Profile
-        </span>
+
+        {/* Profile Icon at the bottom */}
+        <div className="w-full flex items-center px-5 py-4">
+          <button
+            onClick={handleLogout}
+            className="flex flex-col items-center justify-center w-10 h-10 rounded-[10px] transition-colors hover:bg-[#FFFFFF1A]"
+          >
+            <ProfileIcon className="h-6 w-6 text-[#858882]" />
+          </button>
+          <span className="ml-3 text-sm text-[#858882] truncate">
+            {currentUser?.email}
+          </span>
+        </div>
       </div>
     </aside>
   );

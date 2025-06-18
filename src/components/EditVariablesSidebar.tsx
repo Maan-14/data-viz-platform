@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { CrossIcon, SearchIcon, SparklesIcon, ReloadIcon, PlusIcon, TickIcon, ExclamationIcon, ArrowDownIcon } from './icons';
-import type { Variable } from '../data/variableData';
+import type { 
+  EditVariablesSidebarProps, 
+  Variable, 
+} from '../types';
 import { variableCategories as initialCategories } from '../data/variableData';
 
-interface EditVariablesSidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onClose }) => {
+const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ 
+  isOpen, 
+  onClose,
+  onVariableSelect 
+}) => {
   const [hoveredVariable, setHoveredVariable] = useState<Variable | null>(null);
-  const [hoverTimeout, setHoverTimeout] = useState<number | null>(null);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
   const [selectedVariables, setSelectedVariables] = useState<Set<string>>(new Set());
 
-  const handleVariableHover = (variable: Variable) => {
+  const handleVariableHover = useCallback((variable: Variable) => {
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
     }
@@ -21,16 +23,16 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
       setHoveredVariable(variable);
     }, 1500);
     setHoverTimeout(timeout);
-  };
+  }, [hoverTimeout]);
 
-  const handleVariableLeave = () => {
+  const handleVariableLeave = useCallback(() => {
     if (hoverTimeout) {
       clearTimeout(hoverTimeout);
     }
     setHoveredVariable(null);
-  };
+  }, [hoverTimeout]);
 
-  const handleVariableClick = (variableId: string) => {
+  const handleVariableClick = useCallback((variableId: string) => {
     setSelectedVariables(prev => {
       const newSet = new Set(prev);
       if (newSet.has(variableId)) {
@@ -40,7 +42,12 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
       }
       return newSet;
     });
-  };
+  }, [onVariableSelect]);
+
+  const handleClose = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    onClose();
+  }, [onClose]);
 
   return (
     <>
@@ -48,35 +55,35 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/50 backdrop-blur-[4px] z-40"
-          onClick={onClose}
+          onClick={handleClose}
         />
       )}
       
       {/* Sidebar */}
       <div 
-        className={`fixed top-0 right-0 w-1/2 h-full bg-[#0E0D0D] border-l border-[#525252] transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed top-0 right-0 w-full md:w-1/2 h-full bg-[#0E0D0D] border-l border-[#525252] transform transition-transform duration-300 ease-in-out z-50 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="p-8 h-full flex flex-col overflow-y-auto custom-scrollbar">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-white text-2xl font-medium leading-[150%] tracking-[-2.3%] font-['Inter']">
+        <div className="p-4 md:p-8 h-full flex flex-col overflow-y-auto custom-scrollbar">
+          <div className="flex items-center justify-between mb-6 md:mb-8">
+            <h2 className="text-white text-xl md:text-2xl font-medium leading-[150%] tracking-[-2.3%] font-['Inter']">
               Edit Variables
             </h2>
             <button 
-              onClick={onClose}
+              onClick={handleClose}
               className="p-2 hover:bg-[#FFFFFF1A] rounded-lg transition-colors"
             >
-              <CrossIcon className="w-5 h-5 text-[#858882]" />
+              <CrossIcon className="w-4 h-4 md:w-5 md:h-5 text-[#858882]" />
             </button>
           </div>
 
           {/* Search Section */}
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 mb-6 md:mb-8">
             {/* Search Box */}
             <div className="flex-1 relative">
               <div className="absolute left-3 top-1/2 -translate-y-1/2">
-                <SearchIcon className="w-5 h-5 text-[#858882]" />
+                <SearchIcon className="w-4 h-4 md:w-5 md:h-5 text-[#858882]" />
               </div>
               <input
                 type="text"
@@ -85,19 +92,21 @@ const EditVariablesSidebar: React.FC<EditVariablesSidebarProps> = ({ isOpen, onC
               />
             </div>
 
-            {/* Autofill Button */}
-            <button className="flex items-center gap-2.5 bg-[#242424] border border-[#5A5A5A] rounded-[4px] shadow-[0px_0px_12.7px_0px_#FFFFFF0D_inset]">
-              <SparklesIcon className="text-[#B9B9B9]" />
-              <span className="text-white text-sm font-medium">Autofill</span>
-            </button>
+            <div className="flex gap-2.5">
+              {/* Autofill Button */}
+              <button className="flex-1 md:flex-none flex items-center justify-center gap-2.5 bg-[#242424] border border-[#5A5A5A] rounded-[4px] shadow-[0px_0px_12.7px_0px_#FFFFFF0D_inset] px-3 py-2">
+                <SparklesIcon className="text-[#B9B9B9]" />
+                <span className="text-white text-sm font-medium">Autofill</span>
+              </button>
 
-            {/* Rerun Button */}
-            <button className="flex items-center gap-2.5 bg-[#23291E] border border-[#C8E972] rounded-[4px] shadow-[0px_0px_12.7px_0px_#FFFFFF0D_inset]">
-              <ReloadIcon/>
-              <span className="text-[#C9FF3B] font-medium text-sm leading-[150%] tracking-[-2%]">
-                Rerun
-              </span>
-            </button>
+              {/* Rerun Button */}
+              <button className="flex-1 md:flex-none flex items-center justify-center gap-2.5 bg-[#23291E] border border-[#C8E972] rounded-[4px] shadow-[0px_0px_12.7px_0px_#FFFFFF0D_inset] px-3 py-2">
+                <ReloadIcon/>
+                <span className="text-[#C9FF3B] font-medium text-sm leading-[150%] tracking-[-2%]">
+                  Rerun
+                </span>
+              </button>
+            </div>
           </div>
 
           {/* Variable Categories Section */}
